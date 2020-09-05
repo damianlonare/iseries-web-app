@@ -1,15 +1,7 @@
 import React from 'react';
 import './App.css';
 
-function Header() {
-  return (
-    <header className="App-header">
-      <p>
-        Welcome to iSeries.com!
-      </p>
-    </header>
-  )
-}
+import Header from './layouts/Header';
 
 function Footer() {
   return (
