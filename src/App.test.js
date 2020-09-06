@@ -23,9 +23,22 @@ describe('layouts', () => {
   })
 
   test('renders Content layout', () => {
-    const { getByTestId } = render(<Content />)
+    const { getByTestId, getByText, getAllByTestId } = render(<Content />)
 
     expect(getByTestId("content")).toHaveClass("app-content")
+
+    expect(getByTestId("btn-menu-group")).toBeEnabled()
+
+    expect(getByText("Populares")).toBeInTheDocument()
+    expect(getByText("Mejor valoradas")).toBeInTheDocument()
+    expect(getByText("Mas vistas")).toBeInTheDocument()
+
+    expect(getByTestId("table")).toBeEnabled()
+    expect(getByText("Nombre")).toBeInTheDocument()
+    expect(getByText("Poster")).toBeInTheDocument()
+    expect(getByText("Puntuación")).toBeInTheDocument()
+    expect(getByText("Favoritos")).toBeInTheDocument()
+    expect(getAllByTestId("table-row")).toHaveLength(1)
   })
   
   test('renders Footer layout', () => {
