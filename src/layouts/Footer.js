@@ -6,7 +6,7 @@ function Footer() {
       <footer role="contentinfo" className="app-footer">
         <p>
           Build with
-            <span role="img" aria-label="love">❤️</span>&nbsp;
+          &nbsp;<span role="img" aria-label="love">❤️</span>&nbsp;&nbsp;
           by Damian Arechar
         </p>
       </footer>
