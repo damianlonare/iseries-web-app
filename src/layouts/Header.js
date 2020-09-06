@@ -5,7 +5,7 @@ function Header() {
     return (
       <header data-testid="header" className="app-header">
         <p>
-          iSeries
+          Header
         </p>
       </header>
     )
