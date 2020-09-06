@@ -9,7 +9,7 @@ describe('App', () => {
     render(<App />)
 
     expect(screen.getByRole('banner')).toBeEnabled()
-    expect(screen.getByRole("main")).toBeEnabled()
-    expect(screen.getByRole("contentinfo")).toBeEnabled()
+    expect(screen.getByRole('main')).toBeEnabled()
+    expect(screen.getByRole('contentinfo')).toBeEnabled()
   })
 })
