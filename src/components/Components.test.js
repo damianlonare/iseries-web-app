@@ -15,5 +15,6 @@ describe('components', () => {
       expect(screen.getByText("Favoritos")).toBeInTheDocument()
       expect(screen.getAllByRole("row")).toHaveLength(5)
       expect(screen.getAllByRole("cell")).toHaveLength(16)
+      expect(screen.getAllByRole("img")).toHaveLength(4)
     })
   })

@@ -16,26 +16,34 @@ function Table() {
             <tr role="row">
               <td role="cell">Parasite</td>
               <td role="cell">Poster img</td>
-              <td role="cell">5 estrellas</td>
-              <td role="cell">No es favorita</td>
+              <td role="cell">5</td>
+              <td role="cell">
+                <span role="img" aria-label="favorite-icon">⭐️</span>
+              </td>
             </tr>
             <tr role="row">
               <td role="cell">Parasite</td>
               <td role="cell">Poster img</td>
-              <td role="cell">5 estrellas</td>
-              <td role="cell">No es favorita</td>
+              <td role="cell">3</td>
+              <td role="cell">
+                <span role="img" aria-label="favorite-icon">★</span>
+              </td>
             </tr>
             <tr role="row">
               <td role="cell">Parasite</td>
               <td role="cell">Poster img</td>
-              <td role="cell">5 estrellas</td>
-              <td role="cell">No es favorita</td>
+              <td role="cell">3</td>
+              <td role="cell">
+                <span role="img" aria-label="favorite-icon">⭐️</span>
+              </td>
             </tr>
             <tr role="row">
               <td role="cell">Parasite</td>
               <td role="cell">Poster img</td>
-              <td role="cell">5 estrellas</td>
-              <td role="cell">No es favorita</td>
+              <td role="cell">4</td>
+              <td role="cell">
+                <span role="img" aria-label="favorite-icon">⭐️</span>
+              </td>
             </tr>
           </tbody>
         </table>
