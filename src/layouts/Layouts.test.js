@@ -11,6 +11,7 @@ describe('layouts', () => {
     render(<Header />)
 
     expect(screen.getByRole('banner')).toHaveClass("app-header")
+    expect(screen.getByText(/iSeries/)).toBeInTheDocument()
   })
 
   test('renders Content layout', () => {
@@ -30,5 +31,6 @@ describe('layouts', () => {
     render(<Footer />)
 
     expect(screen.getByRole("contentinfo")).toHaveClass("app-footer")
+    expect(screen.getByText(/Damian Arechar/)).toBeInTheDocument()
   })  
 })

@@ -4,7 +4,11 @@ import './Footer.css'
 function Footer() {
     return (
       <footer role="contentinfo" className="app-footer">
-        <p>Footer</p>
+        <p>
+          Build with
+            <span role="img" aria-label="love">❤️</span>&nbsp;
+          by Damian Arechar
+        </p>
       </footer>
     )
 }

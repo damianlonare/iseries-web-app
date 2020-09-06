@@ -5,7 +5,7 @@ function Header() {
     return (
       <header role="banner" className="app-header">
         <p>
-          Header
+          iSeries
         </p>
       </header>
     )
