@@ -19,12 +19,20 @@ describe('layouts', () => {
 
     expect(screen.getByRole('main')).toHaveClass('app-content')
 
-    expect(screen.getAllByRole('button')).toHaveLength(3)
+    expect(screen.getAllByRole('button')).toHaveLength(7)
 
     expect(screen.getByText('Populares')).toBeInTheDocument()
     expect(screen.getByText('Mejor valoradas')).toBeInTheDocument()
     expect(screen.getByText('Mas vistas')).toBeInTheDocument()
     expect(screen.getByRole('table')).toBeEnabled()
+
+    expect(screen.getByText('Ordenar:')).toBeInTheDocument()
+    expect(screen.getByText('A-Z')).toBeInTheDocument()
+    expect(screen.getByText('Z-A')).toBeInTheDocument()
+    expect(screen.getByText('5 a 0')).toBeInTheDocument()
+    expect(screen.getByText('0 a 5')).toBeInTheDocument()
+    expect(screen.getAllByText(/, o por puntuación:/)).toHaveLength(1)
+    expect(screen.getByText('Alfabéticamente:')).toBeInTheDocument()
   })
   
   test('renders Footer layout', () => {
