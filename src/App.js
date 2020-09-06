@@ -1,24 +1,18 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+import './App.css'
 
-import Header from './layouts/Header';
-
-function Footer() {
-  return (
-    <footer>
-      <p>Author: Hege Refsnes</p>
-      <p><a href="mailto:hege@example.com">hege@example.com</a></p>
-    </footer>
-  )
-}
+import Header from './layouts/Header'
+import Content from './layouts/Content'
+import Footer from './layouts/Footer'
 
 function App() {
   return (
     <div className="App">
       <Header />
+      <Content />
       <Footer />
     </div>
   );
 }
 
-export default App;
+export default App
