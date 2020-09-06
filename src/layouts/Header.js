@@ -3,9 +3,9 @@ import './Header.css'
 
 function Header() {
     return (
-      <header data-testid="header" className="app-header">
+      <header role="banner" className="app-header">
         <p>
-          Header
+          iSeries
         </p>
       </header>
     )

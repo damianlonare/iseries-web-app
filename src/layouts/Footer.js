@@ -3,8 +3,12 @@ import './Footer.css'
 
 function Footer() {
     return (
-      <footer data-testid="footer" className="app-footer">
-        <p>Footer</p>
+      <footer role="contentinfo" className="app-footer">
+        <p>
+          Build with
+          &nbsp;<span role="img" aria-label="love">❤️</span>&nbsp;&nbsp;
+          by Damian Arechar
+        </p>
       </footer>
     )
 }
