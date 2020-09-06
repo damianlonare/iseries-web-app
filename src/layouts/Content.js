@@ -3,15 +3,15 @@ import './Content.css'
 
 function Content() {
     return (
-      <section className="app-content" data-testid="content">
-        <div className="btn-menu-group" data-testid="btn-menu-group">
-          <button>Populares</button>
-          <button>Mejor valoradas</button>
-          <button>Mas vistas</button>
+      <section role="main" className="app-content">
+        <div className="btn-menu-group">
+          <button role="button">Populares</button>
+          <button role="button">Mejor valoradas</button>
+          <button role="button">Mas vistas</button>
         </div>
-        <table data-testid="table">
+        <table role="table">
           <thead>
-            <tr>
+            <tr role="row">
               <th>Nombre</th>
               <th>Poster</th>
               <th>Puntuación</th>
@@ -19,7 +19,7 @@ function Content() {
             </tr>
           </thead>
           <tbody>
-            <tr data-testid="table-row">
+            <tr role="row">
               <td>row</td>
             </tr>                        
           </tbody>

@@ -3,7 +3,7 @@ import './Footer.css'
 
 function Footer() {
     return (
-      <footer data-testid="footer" className="app-footer">
+      <footer role="contentinfo" className="app-footer">
         <p>Footer</p>
       </footer>
     )

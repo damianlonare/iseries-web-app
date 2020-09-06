@@ -9,9 +9,9 @@ describe('App', () => {
   test('renders App and layouts inside of it', () => {
     render(<App />)
 
-    expect(screen.getByTestId("header")).toBeEnabled()
-    expect(screen.getByTestId("content")).toBeEnabled()
-    expect(screen.getByTestId("footer")).toBeEnabled()
+    expect(screen.getByRole('banner')).toBeEnabled()
+    expect(screen.getByRole("main")).toBeEnabled()
+    expect(screen.getByRole("contentinfo")).toBeEnabled()
   })
 })
 
@@ -19,31 +19,31 @@ describe('layouts', () => {
   test('renders Header layout', () => {
     render(<Header />)
 
-    expect(screen.getByTestId("header")).toHaveClass("app-header")
+    expect(screen.getByRole('banner')).toHaveClass("app-header")
   })
 
   test('renders Content layout', () => {
     render(<Content />)
 
-    expect(screen.getByTestId("content")).toHaveClass("app-content")
+    expect(screen.getByRole("main")).toHaveClass("app-content")
 
-    expect(screen.getByTestId("btn-menu-group")).toBeEnabled()
+    expect(screen.getAllByRole("button")).toHaveLength(3)
 
     expect(screen.getByText("Populares")).toBeInTheDocument()
     expect(screen.getByText("Mejor valoradas")).toBeInTheDocument()
     expect(screen.getByText("Mas vistas")).toBeInTheDocument()
 
-    expect(screen.getByTestId("table")).toBeEnabled()
+    expect(screen.getByRole("table")).toBeEnabled()
     expect(screen.getByText("Nombre")).toBeInTheDocument()
     expect(screen.getByText("Poster")).toBeInTheDocument()
     expect(screen.getByText("Puntuación")).toBeInTheDocument()
     expect(screen.getByText("Favoritos")).toBeInTheDocument()
-    expect(screen.getAllByTestId("table-row")).toHaveLength(1)
+    expect(screen.getAllByRole("row")).toHaveLength(2)
   })
   
   test('renders Footer layout', () => {
     render(<Footer />)
 
-    expect(screen.getByTestId("footer")).toHaveClass("app-footer")
+    expect(screen.getByRole("contentinfo")).toHaveClass("app-footer")
   })  
 })
