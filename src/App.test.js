@@ -3,6 +3,7 @@ import { render } from '@testing-library/react'
 import App from './App'
 import Header from './layouts/Header'
 import Content from './layouts/Content'
+import Footer from './layouts/Footer'
 
 describe('App', () => {
   test('renders App component', () => {
@@ -26,5 +27,11 @@ describe('layouts', () => {
     const { getByTestId } = render(<Content />)
 
     expect(getByTestId("content")).toHaveClass("app-content")
+  })
+  
+  test('renders Footer component', () => {
+    const { getByTestId } = render(<Footer />)
+
+    expect(getByTestId("footer")).toHaveClass("app-footer")
   })  
 })
