@@ -17,10 +17,9 @@ describe('App', () => {
 
 describe('layouts', () => {
   test('renders Header component', () => {
-    const { getByTestId, getByText } = render(<Header />)
+    const { getByTestId } = render(<Header />)
 
     expect(getByTestId("header")).toHaveClass("app-header")
-    expect(getByText('iSeries')).toBeInTheDocument()
   })
 
   test('renders Content component', () => {
