@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import App from './App'
 import Header from './layouts/Header'
 import Content from './layouts/Content'
@@ -7,43 +7,43 @@ import Footer from './layouts/Footer'
 
 describe('App', () => {
   test('renders App and layouts inside of it', () => {
-    const { getByTestId } = render(<App />)
+    render(<App />)
 
-    expect(getByTestId("header")).toBeEnabled()
-    expect(getByTestId("content")).toBeEnabled()
-    expect(getByTestId("footer")).toBeEnabled()
+    expect(screen.getByTestId("header")).toBeEnabled()
+    expect(screen.getByTestId("content")).toBeEnabled()
+    expect(screen.getByTestId("footer")).toBeEnabled()
   })
 })
 
 describe('layouts', () => {
   test('renders Header layout', () => {
-    const { getByTestId } = render(<Header />)
+    render(<Header />)
 
-    expect(getByTestId("header")).toHaveClass("app-header")
+    expect(screen.getByTestId("header")).toHaveClass("app-header")
   })
 
   test('renders Content layout', () => {
-    const { getByTestId, getByText, getAllByTestId } = render(<Content />)
+    render(<Content />)
 
-    expect(getByTestId("content")).toHaveClass("app-content")
+    expect(screen.getByTestId("content")).toHaveClass("app-content")
 
-    expect(getByTestId("btn-menu-group")).toBeEnabled()
+    expect(screen.getByTestId("btn-menu-group")).toBeEnabled()
 
-    expect(getByText("Populares")).toBeInTheDocument()
-    expect(getByText("Mejor valoradas")).toBeInTheDocument()
-    expect(getByText("Mas vistas")).toBeInTheDocument()
+    expect(screen.getByText("Populares")).toBeInTheDocument()
+    expect(screen.getByText("Mejor valoradas")).toBeInTheDocument()
+    expect(screen.getByText("Mas vistas")).toBeInTheDocument()
 
-    expect(getByTestId("table")).toBeEnabled()
-    expect(getByText("Nombre")).toBeInTheDocument()
-    expect(getByText("Poster")).toBeInTheDocument()
-    expect(getByText("Puntuación")).toBeInTheDocument()
-    expect(getByText("Favoritos")).toBeInTheDocument()
-    expect(getAllByTestId("table-row")).toHaveLength(1)
+    expect(screen.getByTestId("table")).toBeEnabled()
+    expect(screen.getByText("Nombre")).toBeInTheDocument()
+    expect(screen.getByText("Poster")).toBeInTheDocument()
+    expect(screen.getByText("Puntuación")).toBeInTheDocument()
+    expect(screen.getByText("Favoritos")).toBeInTheDocument()
+    expect(screen.getAllByTestId("table-row")).toHaveLength(1)
   })
   
   test('renders Footer layout', () => {
-    const { getByTestId } = render(<Footer />)
+    render(<Footer />)
 
-    expect(getByTestId("footer")).toHaveClass("app-footer")
+    expect(screen.getByTestId("footer")).toHaveClass("app-footer")
   })  
 })
