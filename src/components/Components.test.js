@@ -1,12 +1,17 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react'
+import {
+  render,
+  screen,
+  fireEvent,
+  waitForElement,
+} from '@testing-library/react'
 
 import SortingGroup from './SortingGroup'
 import FilteringGroup from './FilteringGroup'
 import Table from './Table'
 
 describe('components', () => {
-  test('renders sorting group component', () => {
+  test('renders sorting group component', async () => {
     render(<SortingGroup />)
 
     expect(screen.getByText('Ordenar:')).toBeInTheDocument()
@@ -16,6 +21,10 @@ describe('components', () => {
     expect(screen.getByText('0 a 5')).toBeInTheDocument()
     expect(screen.getAllByText(/o por puntuación:/)).toHaveLength(1)
     expect(screen.getByText('Alfabéticamente:')).toBeInTheDocument()
+
+    fireEvent.click(screen.getByText('A-Z'))
+
+    await waitForElement(() => screen.getByText('Seleccionado: A-Z'))
   })
 
   test('renders filtering group component', () => {
