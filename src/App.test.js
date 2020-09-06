@@ -23,14 +23,8 @@ describe('layouts', () => {
   })
 
   test('renders Content component', () => {
-    const { getByTestId, getByText } = render(<Content />)
+    const { getByTestId } = render(<Content />)
 
     expect(getByTestId("content")).toHaveClass("app-content")
-
-    expect(getByTestId("series-table")).toBeInTheDocument()
-    expect(getByText('Nombre')).toBeInTheDocument()
-    expect(getByText('Poster')).toBeInTheDocument()
-    expect(getByText('Puntuación')).toBeInTheDocument()
-    expect(getByText('Favoritos')).toBeInTheDocument()
   })  
 })
