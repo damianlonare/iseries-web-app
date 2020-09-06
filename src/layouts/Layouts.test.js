@@ -31,7 +31,7 @@ describe('layouts', () => {
     expect(screen.getByText('Z-A')).toBeInTheDocument()
     expect(screen.getByText('5 a 0')).toBeInTheDocument()
     expect(screen.getByText('0 a 5')).toBeInTheDocument()
-    expect(screen.getAllByText(/, o por puntuación:/)).toHaveLength(1)
+    expect(screen.getAllByText(/o por puntuación:/)).toHaveLength(1)
     expect(screen.getByText('Alfabéticamente:')).toBeInTheDocument()
   })
   
