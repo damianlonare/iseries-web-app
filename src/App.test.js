@@ -1,12 +1,15 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
+
 import App from './App'
 import Header from './layouts/Header'
 import Content from './layouts/Content'
 import Footer from './layouts/Footer'
 
+import Table from './components/Table'
+
 describe('App', () => {
-  test('renders App and layouts inside of it', () => {
+  test('renders App', () => {
     render(<App />)
 
     expect(screen.getByRole('banner')).toBeEnabled()
@@ -32,13 +35,7 @@ describe('layouts', () => {
     expect(screen.getByText("Populares")).toBeInTheDocument()
     expect(screen.getByText("Mejor valoradas")).toBeInTheDocument()
     expect(screen.getByText("Mas vistas")).toBeInTheDocument()
-
     expect(screen.getByRole("table")).toBeEnabled()
-    expect(screen.getByText("Nombre")).toBeInTheDocument()
-    expect(screen.getByText("Poster")).toBeInTheDocument()
-    expect(screen.getByText("Puntuación")).toBeInTheDocument()
-    expect(screen.getByText("Favoritos")).toBeInTheDocument()
-    expect(screen.getAllByRole("row")).toHaveLength(2)
   })
   
   test('renders Footer layout', () => {
@@ -46,4 +43,18 @@ describe('layouts', () => {
 
     expect(screen.getByRole("contentinfo")).toHaveClass("app-footer")
   })  
+})
+
+describe('components', () => {
+  test('renders table component', () => {
+    render(<Table />)
+
+    expect(screen.getByRole("table")).toBeEnabled()
+    expect(screen.getByText("Nombre")).toBeInTheDocument()
+    expect(screen.getByText("Poster")).toBeInTheDocument()
+    expect(screen.getByText("Puntuación")).toBeInTheDocument()
+    expect(screen.getByText("Favoritos")).toBeInTheDocument()
+    expect(screen.getAllByRole("row")).toHaveLength(5)
+    expect(screen.getAllByRole("cell")).toHaveLength(16)
+  })
 })
