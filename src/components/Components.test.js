@@ -56,7 +56,7 @@ describe('components', () => {
     expect(btnSelectedThree).toBeInTheDocument()
   })
 
-  test('renders table component', () => {
+  test('renders table component', async () => {
     render(<Table />)
 
     expect(screen.getByRole('table')).toBeEnabled()
@@ -67,5 +67,27 @@ describe('components', () => {
     expect(screen.getAllByRole('row')).toHaveLength(5)
     expect(screen.getAllByRole('cell')).toHaveLength(16)
     expect(screen.getAllByRole('img')).toHaveLength(4)
+
+    const btnChildOne = (
+      <button data-testid="1">
+        <span aria-label="favorite-icon" role="img">
+          ★
+        </span>
+      </button>
+    )
+    const btnChildTwo = (
+      <button data-testid="1">
+        <span aria-label="favorite-icon" role="img">
+          ⭐️
+        </span>
+      </button>
+    )
+
+    expect(btnChildOne).toBeInTheDocument()
+    // expect(screen.getByTestId('1')).toContain(btnChildOne)
+    // fireEvent.click(screen.getAllByTestId('table-test-btn')[0])
+    // await expect(screen.getAllByTestId('table-test-btn')[0]).toContain(
+    //   btnChildTwo
+    // )
   })
 })

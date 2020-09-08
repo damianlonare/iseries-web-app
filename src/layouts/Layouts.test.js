@@ -18,7 +18,7 @@ describe('layouts', () => {
 
     expect(screen.getByRole('main')).toHaveClass('app-content')
 
-    expect(screen.getAllByRole('button')).toHaveLength(7)
+    expect(screen.getAllByRole('button')).toHaveLength(11)
     expect(screen.getByRole('table')).toBeEnabled()
   })
 
