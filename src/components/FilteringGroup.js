@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './FilteringGroup.css'
 
 function FilteringGroup() {
+  const [btnSelected, setBtnSelected] = useState('')
+
   return (
     <div className="btn-menu-group">
-      <button>Populares</button>
-      <button>Mejor valoradas</button>
-      <button>Mas vistas</button>
+      <button onClick={() => setBtnSelected('Populares')}>Populares</button>
+      <button onClick={() => setBtnSelected('Mejor valoradas')}>
+        Mejor valoradas
+      </button>
+      <button onClick={() => setBtnSelected('Mas vistas')}>Mas vistas</button>
+      <p>Seleccionado: {btnSelected}</p>
     </div>
   )
 }
