@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './SortingGroup.css'
 
 function SortingGroup() {
+  const [btnSelected, setBtnSelected] = useState('')
+
   return (
     <div>
       <p>Ordenar:</p>
@@ -9,8 +11,8 @@ function SortingGroup() {
       {/* TODO: QUITAR, SE AGREGÓ SOLO PARA AYUDAR A ENTENDER MEJOR 
         ANTES DE LA IMPLEMENTACIÓN DE DISEÑO FINAL */}
       &nbsp;
-      <button>A-Z</button>
-      <button>Z-A</button>
+      <button onClick={() => setBtnSelected('A-Z')}>A-Z</button>
+      <button onClick={() => setBtnSelected('Z-A')}>Z-A</button>
       {/* TODO: QUITAR, SE AGREGÓ SOLO PARA AYUDAR A ENTENDER MEJOR 
         ANTES DE LA IMPLEMENTACIÓN DE DISEÑO FINAL */}
       &nbsp;
@@ -18,12 +20,13 @@ function SortingGroup() {
       {/* TODO: QUITAR, SE AGREGÓ SOLO PARA AYUDAR A ENTENDER MEJOR 
         ANTES DE LA IMPLEMENTACIÓN DE DISEÑO FINAL */}
       &nbsp;
-      <button>5 a 0</button>
-      <button>0 a 5</button>
+      <button onClick={() => setBtnSelected('5 a 0')}>5 a 0</button>
+      <button onClick={() => setBtnSelected('0 a 5')}>0 a 5</button>
       {/* TODO: QUITAR, SE AGREGÓ SOLO PARA AYUDAR A ENTENDER MEJOR 
         ANTES DE LA IMPLEMENTACIÓN DE DISEÑO FINAL */}
       <br />
       <br />
+      <p>Seleccionado: {btnSelected}</p>
     </div>
   )
 }
