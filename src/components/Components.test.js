@@ -1,10 +1,5 @@
 import React from 'react'
-import {
-  render,
-  screen,
-  fireEvent,
-  waitForElement,
-} from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 
 import SortingGroup from './SortingGroup'
 import FilteringGroup from './FilteringGroup'
@@ -23,16 +18,42 @@ describe('components', () => {
     expect(screen.getByText('Alfabéticamente:')).toBeInTheDocument()
 
     fireEvent.click(screen.getByText('A-Z'))
+    const btnSelectedOne = await screen.getByText('Seleccionado: A-Z')
+    expect(btnSelectedOne).toBeInTheDocument()
 
-    await waitForElement(() => screen.getByText('Seleccionado: A-Z'))
+    fireEvent.click(screen.getByText('Z-A'))
+    const btnSelectedTwo = await screen.getByText('Seleccionado: Z-A')
+    expect(btnSelectedTwo).toBeInTheDocument()
+
+    fireEvent.click(screen.getByText('5 a 0'))
+    const btnSelectedThree = await screen.getByText('Seleccionado: 5 a 0')
+    expect(btnSelectedThree).toBeInTheDocument()
+
+    fireEvent.click(screen.getByText('0 a 5'))
+    const btnSelectedFour = await screen.getByText('Seleccionado: 0 a 5')
+    expect(btnSelectedFour).toBeInTheDocument()
   })
 
-  test('renders filtering group component', () => {
+  test('renders filtering group component', async () => {
     render(<FilteringGroup />)
 
     expect(screen.getByText('Populares')).toBeInTheDocument()
     expect(screen.getByText('Mejor valoradas')).toBeInTheDocument()
     expect(screen.getByText('Mas vistas')).toBeInTheDocument()
+
+    fireEvent.click(screen.getByText('Populares'))
+    const btnSelectedOne = await screen.getByText('Seleccionado: Populares')
+    expect(btnSelectedOne).toBeInTheDocument()
+
+    fireEvent.click(screen.getByText('Mejor valoradas'))
+    const btnSelectedTwo = await screen.getByText(
+      'Seleccionado: Mejor valoradas'
+    )
+    expect(btnSelectedTwo).toBeInTheDocument()
+
+    fireEvent.click(screen.getByText('Mas vistas'))
+    const btnSelectedThree = await screen.getByText('Seleccionado: Mas vistas')
+    expect(btnSelectedThree).toBeInTheDocument()
   })
 
   test('renders table component', () => {
