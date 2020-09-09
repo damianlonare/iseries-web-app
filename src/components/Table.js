@@ -42,7 +42,9 @@ function Table({ serieSelected }) {
       >
         {s.name}
       </td>
-      <td role="cell">{s.posterImg}</td>
+      <td role="cell">
+        <img alt="Poster Img" />
+      </td>
       <td role="cell">{s.rating}</td>
       <td role="cell">
         <button
