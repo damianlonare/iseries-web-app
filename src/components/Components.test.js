@@ -66,28 +66,9 @@ describe('components', () => {
     expect(screen.getByText('Favoritos')).toBeInTheDocument()
     expect(screen.getAllByRole('row')).toHaveLength(5)
     expect(screen.getAllByRole('cell')).toHaveLength(16)
-    expect(screen.getAllByRole('img')).toHaveLength(4)
 
-    const btnChildOne = (
-      <button data-testid="1">
-        <span aria-label="favorite-icon" role="img">
-          ★
-        </span>
-      </button>
-    )
-    const btnChildTwo = (
-      <button data-testid="1">
-        <span aria-label="favorite-icon" role="img">
-          ⭐️
-        </span>
-      </button>
-    )
-
-    expect(btnChildOne).toBeInTheDocument()
-    // expect(screen.getByTestId('1')).toContain(btnChildOne)
-    // fireEvent.click(screen.getAllByTestId('table-test-btn')[0])
-    // await expect(screen.getAllByTestId('table-test-btn')[0]).toContain(
-    //   btnChildTwo
-    // )
+    expect(screen.getAllByText('No es favorito')[0]).toBeInTheDocument()
+    fireEvent.click(screen.getAllByTestId('1')[0])
+    await expect(screen.getByText('Es favorito')).toBeInTheDocument()
   })
 })
