@@ -3,6 +3,7 @@ import './Content.css'
 import SortingGroup from '../components/SortingGroup'
 import FilteringGroup from '../components/FilteringGroup'
 import Table from '../components/Table'
+import SerieDetail from '../pages/SerieDetail'
 
 function Content() {
   const [serieSelected, setSerieSelected] = useState(null)
@@ -29,7 +30,7 @@ function Content() {
           <Table serieSelected={(serie) => setSerieSelected(serie)} />
         </div>
       ) : (
-        <div>Detalle</div>
+        <SerieDetail />
       )}
     </section>
   )
