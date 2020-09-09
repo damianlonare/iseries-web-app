@@ -1,7 +1,72 @@
-import React from "react";
-import "./Table.css";
+import React, { useState } from 'react'
+import './Table.css'
 
 function Table() {
+  const [series, setSeries] = useState([
+    {
+      id: 1,
+      name: 'Parasite',
+      posterImg: 'Poster img',
+      rating: 4,
+      isFavorited: false,
+    },
+    {
+      id: 2,
+      name: 'Parasite',
+      posterImg: 'Poster img',
+      rating: 4,
+      isFavorited: false,
+    },
+    {
+      id: 3,
+      name: 'Parasite',
+      posterImg: 'Poster img',
+      rating: 4,
+      isFavorited: false,
+    },
+    {
+      id: 4,
+      name: 'Parasite',
+      posterImg: 'Poster img',
+      rating: 4,
+      isFavorited: false,
+    },
+  ])
+
+  const tableItems = series.map((s) => (
+    <tr role="row" key={s.id}>
+      <td role="cell">{s.name}</td>
+      <td role="cell">{s.posterImg}</td>
+      <td role="cell">{s.rating}</td>
+      <td role="cell">
+        <button
+          data-testid={s.id}
+          onClick={() => handleOnClickIsFavorited(s.id)}
+        >
+          {s.isFavorited ? 'Es favorito' : 'No es favorito'}
+        </button>
+      </td>
+    </tr>
+  ))
+
+  function handleOnClickIsFavorited(id) {
+    console.log('handleOnClick')
+    const newSeries = series.map((serie) => {
+      if (serie.id === id) {
+        const updatedSerie = {
+          ...serie,
+          isFavorited: !serie.isFavorited,
+        }
+
+        return updatedSerie
+      }
+
+      return serie
+    })
+
+    setSeries(newSeries)
+  }
+
   return (
     <table role="table">
       <thead>
@@ -12,50 +77,9 @@ function Table() {
           <th>Favoritos</th>
         </tr>
       </thead>
-      <tbody>
-        <tr role="row">
-          <td role="cell">Parasite</td>
-          <td role="cell">Poster img</td>
-          <td role="cell">5</td>
-          <td role="cell">
-            <span role="img" aria-label="favorite-icon">
-              ⭐️
-            </span>
-          </td>
-        </tr>
-        <tr role="row">
-          <td role="cell">Parasite</td>
-          <td role="cell">Poster img</td>
-          <td role="cell">3</td>
-          <td role="cell">
-            <span role="img" aria-label="favorite-icon">
-              ★
-            </span>
-          </td>
-        </tr>
-        <tr role="row">
-          <td role="cell">Parasite</td>
-          <td role="cell">Poster img</td>
-          <td role="cell">3</td>
-          <td role="cell">
-            <span role="img" aria-label="favorite-icon">
-              ⭐️
-            </span>
-          </td>
-        </tr>
-        <tr role="row">
-          <td role="cell">Parasite</td>
-          <td role="cell">Poster img</td>
-          <td role="cell">4</td>
-          <td role="cell">
-            <span role="img" aria-label="favorite-icon">
-              ⭐️
-            </span>
-          </td>
-        </tr>
-      </tbody>
+      <tbody>{tableItems}</tbody>
     </table>
-  );
+  )
 }
 
-export default Table;
+export default Table
