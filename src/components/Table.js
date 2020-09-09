@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Table.css'
 
-function Table() {
+function Table({ serieSelected }) {
   const [series, setSeries] = useState([
     {
       id: 1,
@@ -35,8 +35,16 @@ function Table() {
 
   const tableItems = series.map((s) => (
     <tr role="row" key={s.id}>
-      <td role="cell">{s.name}</td>
-      <td role="cell">{s.posterImg}</td>
+      <td
+        role="cell"
+        data-testid={`serieTitle${s.id}`}
+        onClick={() => serieSelected(s.id)}
+      >
+        {s.name}
+      </td>
+      <td role="cell">
+        <img alt="Poster Img" />
+      </td>
       <td role="cell">{s.rating}</td>
       <td role="cell">
         <button
