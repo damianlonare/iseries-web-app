@@ -24,6 +24,13 @@ describe('layouts', () => {
     fireEvent.click(screen.getByTestId('serieTitle1'))
     await expect(screen.getByText(/Detalle/)).toBeInTheDocument()
     expect(screen.queryByTestId('serieTitle1')).not.toBeInTheDocument()
+
+    /* 
+      TODO: Buscar como hacer un mock del window.location.assign('/')
+      expect(screen.getByText('Regresar')).toBeInTheDocument()
+      fireEvent.click(screen.getByText('Regresar'))
+      await expect(screen.queryByText('Regresar')).not.toBeInTheDocument() 
+    */
   })
 
   test('renders Footer layout', () => {
