@@ -43,15 +43,7 @@ function Table() {
           data-testid={s.id}
           onClick={() => handleOnClickIsFavorited(s.id)}
         >
-          {s.isFavorited ? (
-            <span role="img" aria-label="favorite-icon">
-              ⭐️
-            </span>
-          ) : (
-            <span role="img" aria-label="favorite-icon">
-              ★
-            </span>
-          )}
+          {s.isFavorited ? 'Es favorito' : 'No es favorito'}
         </button>
       </td>
     </tr>
