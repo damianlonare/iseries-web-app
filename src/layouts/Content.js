@@ -21,6 +21,21 @@ function Content() {
     )
   })
 
+  useEffect(() => {
+    fetch(`${process.env.API}/tv/popular`)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          console.log('success response')
+          console.log(result)
+        },
+        (error) => {
+          console.log('error response')
+          console.log(error)
+        }
+      )
+  }, [])
+
   return (
     <section role="main" className="app-content">
       {!serieSelected ? (
