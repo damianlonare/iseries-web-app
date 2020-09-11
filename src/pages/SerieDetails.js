@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-function SerieDetail() {
+function SerieDetails() {
   const [isFavorited, setIsFavorited] = useState(false)
   const [serieId, setSerieId] = useState(null)
   const [serieDetails, setSerieDetails] = useState()
@@ -33,7 +33,7 @@ function SerieDetail() {
       .then((res) => res.json())
       .then(
         (response) => {
-          setSerieDetails(response.results)
+          setSerieDetails(response)
         },
         (response) => {
           // TODO: Handle response error...
@@ -58,4 +58,4 @@ function SerieDetail() {
   )
 }
 
-export default SerieDetail
+export default SerieDetails

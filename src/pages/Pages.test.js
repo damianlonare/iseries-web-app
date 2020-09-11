@@ -1,11 +1,11 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 
-import SerieDetail from './SerieDetail'
+import SerieDetails from './SerieDetails'
 
-describe('SerieDetail', () => {
-  test('renders SerieDetail page', async () => {
-    render(<SerieDetail />)
+describe('SerieDetails', () => {
+  test('renders SerieDetails page', async () => {
+    render(<SerieDetails />)
 
     expect(screen.getByText('Descripción')).toBeInTheDocument()
     expect(screen.getByText('Genero')).toBeInTheDocument()

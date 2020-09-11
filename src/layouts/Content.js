@@ -3,7 +3,7 @@ import './Content.css'
 import SortingGroup from '../components/SortingGroup'
 import FilteringGroup from '../components/FilteringGroup'
 import Table from '../components/Table'
-import SerieDetail from '../pages/SerieDetail'
+import SerieDetails from '../pages/SerieDetails'
 
 function Content() {
   const [orderBy, setOrderBy] = useState('')
@@ -46,7 +46,11 @@ function Content() {
   }, [orderBy])
 
   useEffect(() => {
-    setPage(1)
+    if (page !== 1) {
+      setPage(1)
+    } else {
+      fetchApiDataForSeriesList()
+    }
   }, [filterBy])
 
   useEffect(() => {
@@ -139,7 +143,7 @@ function Content() {
           <button onClick={() => setPage(page + 1)}>Siguiente</button>
         </div>
       ) : (
-        <SerieDetail />
+        <SerieDetails />
       )}
     </section>
   )
