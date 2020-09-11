@@ -9,26 +9,22 @@ function Content() {
   const [orderBy, setOrderBy] = useState('')
   const [filterBy, setFilterBy] = useState('popular')
   const [seriesList, setSeriesList] = useState([])
-  const [serieSelected, setSerieSelected] = useState(null)
+  const [goToDetails, setGoToDetails] = useState(false)
   const [favoritedSeriesList, setFavoritedSeriesList] = useState([])
   const [page, setPage] = useState(1)
 
-  // useEffect(() => {
-  //   if (!serieSelected) return
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const id = params.get('id')
 
-  //   const params = new URLSearchParams(window.location.search)
-  //   params.set('id', serieSelected)
-
-  //   window.history.replaceState(
-  //     {},
-  //     '',
-  //     `${window.location.pathname}serie/?${params}`
-  //   )
-  // })
+    if (id) {
+      setGoToDetails(true)
+    }
+  })
 
   useEffect(() => {
     fetchApiDataForSeriesList()
-  }, [seriesList])
+  }, [seriesList === null])
 
   useEffect(() => {
     const sortedSeriesList = [...seriesList].sort((a, b) => {
@@ -73,7 +69,14 @@ function Content() {
   }
 
   function handleOnClickSerie(serie) {
-    setSerieSelected(serie)
+    const params = new URLSearchParams(window.location.search)
+    params.set('id', serie.id)
+    window.history.pushState(
+      {},
+      '',
+      `${window.location.origin}/serie/?${params}`
+    )
+    setGoToDetails(true)
   }
 
   function handleOnClickIsFavorited(serie) {
@@ -114,29 +117,30 @@ function Content() {
 
   return (
     <section role="main" className="app-content">
-      {/* {!serieSelected ? ( */}
-      <div>
-        <SortingGroup
-          handleOnClickOrderBy={handleOnClickOrderBy}
-          orderBy={orderBy}
-        />
-        <FilteringGroup
-          handleOnClickFilterBy={handleOnClickFilterBy}
-          filterBy={filterBy}
-        />
-        <Table
-          series={seriesList}
-          favoritedSeriesList={favoritedSeriesList}
-          handleOnClickSerie={handleOnClickSerie}
-          handleOnClickIsFavorited={handleOnClickIsFavorited}
-          handleOnClickIsNotFavorited={handleOnClickIsNotFavorited}
-        />
-        <button onClick={() => setPage(page - 1)}>Regresar</button>
-        <span className="Content__page-text">{page}</span>
-        <button onClick={() => setPage(page + 1)}>Siguiente</button>
-      </div>
-      {/* ) : ( // <SerieDetail />
-      )} */}
+      {!goToDetails ? (
+        <div>
+          <SortingGroup
+            handleOnClickOrderBy={handleOnClickOrderBy}
+            orderBy={orderBy}
+          />
+          <FilteringGroup
+            handleOnClickFilterBy={handleOnClickFilterBy}
+            filterBy={filterBy}
+          />
+          <Table
+            series={seriesList}
+            favoritedSeriesList={favoritedSeriesList}
+            handleOnClickSerie={handleOnClickSerie}
+            handleOnClickIsFavorited={handleOnClickIsFavorited}
+            handleOnClickIsNotFavorited={handleOnClickIsNotFavorited}
+          />
+          <button onClick={() => setPage(page - 1)}>Regresar</button>
+          <span className="Content__page-text">{page}</span>
+          <button onClick={() => setPage(page + 1)}>Siguiente</button>
+        </div>
+      ) : (
+        <SerieDetail />
+      )}
     </section>
   )
 }
