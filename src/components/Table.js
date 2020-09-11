@@ -11,7 +11,7 @@ function Table({
   const tableItems = series.map((s) => (
     <tr role="row" key={s.id}>
       <td
-        className="text--center"
+        className="text--center Table__td-name"
         role="cell"
         data-testid={`serieTitle${s.id}`}
         onClick={() => handleOnClickSerie(s)}

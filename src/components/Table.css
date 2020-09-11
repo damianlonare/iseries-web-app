@@ -25,3 +25,7 @@ tr:hover {
     margin-top: 50px;
   }
 }
+
+.Table__td-name {
+  cursor: pointer;
+}
