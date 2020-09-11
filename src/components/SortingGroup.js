@@ -4,7 +4,7 @@ import './SortingGroup.css'
 function SortingGroup({ handleOnClickOrderBy, orderBy }) {
   return (
     <div>
-      <label for="orderByField">Ordenar por:</label>
+      <label htmlFor="orderByField">Ordenar por:</label>
       <select id="orderByField" value={orderBy} onChange={handleOnClickOrderBy}>
         <option value="A-Z">A-Z</option>
         <option value="Z-A">Z-A</option>

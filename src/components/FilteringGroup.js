@@ -4,7 +4,7 @@ import './FilteringGroup.css'
 function FilteringGroup({ filterBy, handleOnClickFilterBy }) {
   return (
     <div>
-      <label for="filterByField">Filtrar por:</label>
+      <label htmlFor="filterByField">Filtrar por:</label>
       <select
         id="filterByField"
         value={filterBy}
