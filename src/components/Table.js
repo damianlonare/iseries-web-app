@@ -27,7 +27,7 @@ function Table({
       <td role="cell">
         {isFavorited(s) ? (
           <button
-            class="button button-clear"
+            className="button button-clear"
             data-testid={s.id}
             onClick={() => handleOnClickIsNotFavorited(s)}
           >
@@ -35,7 +35,7 @@ function Table({
           </button>
         ) : (
           <button
-            class="button button-clear"
+            className="button button-clear"
             data-testid={s.id}
             onClick={() => handleOnClickIsFavorited(s)}
           >
