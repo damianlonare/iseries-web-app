@@ -1,41 +1,11 @@
 import React, { useState } from 'react'
 import './Table.css'
 
-function Table({ serieSelected }) {
-  const [series, setSeries] = useState([
-    {
-      id: 1,
-      name: 'Parasite',
-      posterImg: 'Poster img',
-      rating: 4,
-      isFavorited: false,
-    },
-    {
-      id: 2,
-      name: 'Parasite',
-      posterImg: 'Poster img',
-      rating: 4,
-      isFavorited: false,
-    },
-    {
-      id: 3,
-      name: 'Parasite',
-      posterImg: 'Poster img',
-      rating: 4,
-      isFavorited: false,
-    },
-    {
-      id: 4,
-      name: 'Parasite',
-      posterImg: 'Poster img',
-      rating: 4,
-      isFavorited: false,
-    },
-  ])
-
+function Table({ serieSelected, series }) {
   const tableItems = series.map((s) => (
     <tr role="row" key={s.id}>
       <td
+        class="text--center"
         role="cell"
         data-testid={`serieTitle${s.id}`}
         onClick={() => serieSelected(s.id)}
@@ -43,9 +13,15 @@ function Table({ serieSelected }) {
         {s.name}
       </td>
       <td role="cell">
-        <img alt="Poster Img" />
+        <img
+          class="Table__poster-img"
+          alt="Poster Img"
+          src={`https://image.tmdb.org/t/p/w500` + s.poster_path}
+        />
       </td>
-      <td role="cell">{s.rating}</td>
+      <td class="text--center" role="cell">
+        {s.vote_average}
+      </td>
       <td role="cell">
         <button
           data-testid={s.id}
@@ -58,21 +34,7 @@ function Table({ serieSelected }) {
   ))
 
   function handleOnClickIsFavorited(id) {
-    console.log('handleOnClick')
-    const newSeries = series.map((serie) => {
-      if (serie.id === id) {
-        const updatedSerie = {
-          ...serie,
-          isFavorited: !serie.isFavorited,
-        }
-
-        return updatedSerie
-      }
-
-      return serie
-    })
-
-    setSeries(newSeries)
+    console.log('handleOnClickIsFavorited')
   }
 
   return (
