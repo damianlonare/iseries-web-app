@@ -90,8 +90,9 @@ function Content() {
     }
   }, [favoritedSeriesList.length === 0])
 
-  function handleOnClickOrderBy(type) {
-    setOrderBy(type)
+  function handleOnClickOrderBy(event) {
+    console.log(event.target.value)
+    setOrderBy(event.target.value)
   }
 
   function handleOnClickFilterBy(type) {
