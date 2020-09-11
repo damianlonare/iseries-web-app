@@ -7,7 +7,7 @@ import SerieDetail from '../pages/SerieDetail'
 
 function Content() {
   const [orderBy, setOrderBy] = useState('')
-  const [filterBy, setFilterBy] = useState('')
+  const [filterBy, setFilterBy] = useState('popular')
   const [seriesList, setSeriesList] = useState([])
   const [serieSelected, setSerieSelected] = useState(null)
   const [favoritedSeries, setFavoritedSeries] = useState([])
@@ -26,21 +26,7 @@ function Content() {
   // })
 
   useEffect(() => {
-    fetch(process.env.REACT_APP_API + 'tv/popular', {
-      headers: new Headers({
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: 'Bearer ' + process.env.REACT_APP_BEARER_TOKEN,
-      }),
-    })
-      .then((res) => res.json())
-      .then(
-        (response) => {
-          setSeriesList(response.results)
-        },
-        (response) => {
-          // TODO: Handle response error...
-        }
-      )
+    fetchApiDataForSeriesList()
   }, [seriesList.length === 0])
 
   useEffect(() => {
@@ -62,6 +48,10 @@ function Content() {
     setSeriesList(sortedSeriesList)
   }, [orderBy])
 
+  useEffect(() => {
+    fetchApiDataForSeriesList()
+  }, [filterBy])
+
   function handleOnClickOrderBy(type) {
     setOrderBy(type)
   }
@@ -76,6 +66,24 @@ function Content() {
 
   function handleOnClickIsFavorited(serie) {
     setFavoritedSeries([...favoritedSeries, serie])
+  }
+
+  function fetchApiDataForSeriesList() {
+    fetch(`${process.env.REACT_APP_API}tv/${filterBy}`, {
+      headers: new Headers({
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: 'Bearer ' + process.env.REACT_APP_BEARER_TOKEN,
+      }),
+    })
+      .then((res) => res.json())
+      .then(
+        (response) => {
+          setSeriesList(response.results)
+        },
+        (response) => {
+          // TODO: Handle response error...
+        }
+      )
   }
 
   return (
