@@ -2,18 +2,6 @@ import React, { useState } from 'react'
 import './FilteringGroup.css'
 
 function FilteringGroup({ filterBy, handleOnClickFilterBy }) {
-  function translateFilterBy() {
-    if (filterBy === 'popular') {
-      return 'Populares'
-    }
-    if (filterBy === 'top_rated') {
-      return 'Mejor valoradas'
-    }
-    if (filterBy === 'on_the_air') {
-      return 'Al aire'
-    }
-  }
-
   return (
     <div className="btn-menu-group">
       <button onClick={() => handleOnClickFilterBy('popular')}>
@@ -25,7 +13,6 @@ function FilteringGroup({ filterBy, handleOnClickFilterBy }) {
       <button onClick={() => handleOnClickFilterBy('on_the_air')}>
         Mas vistas
       </button>
-      <p>Seleccionado: {translateFilterBy()}</p>
     </div>
   )
 }
