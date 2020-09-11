@@ -1,7 +1,13 @@
 import React, { useState } from 'react'
 import './Table.css'
 
-function Table({ series, handleOnClickSerie, handleOnClickIsFavorited }) {
+function Table({
+  series,
+  handleOnClickSerie,
+  handleOnClickIsFavorited,
+  favoritedSeriesList,
+  handleOnClickIsNotFavorited,
+}) {
   const tableItems = series.map((s) => (
     <tr role="row" key={s.id}>
       <td
@@ -23,12 +29,31 @@ function Table({ series, handleOnClickSerie, handleOnClickIsFavorited }) {
         {s.vote_average}
       </td>
       <td role="cell">
-        <button data-testid={s.id} onClick={() => handleOnClickIsFavorited(s)}>
-          No es favorito
-        </button>
+        {isFavorited(s) ? (
+          <button
+            data-testid={s.id}
+            onClick={() => handleOnClickIsNotFavorited(s)}
+          >
+            Es favorito
+          </button>
+        ) : (
+          <button
+            data-testid={s.id}
+            onClick={() => handleOnClickIsFavorited(s)}
+          >
+            No es favorito
+          </button>
+        )}
       </td>
     </tr>
   ))
+
+  function isFavorited(serie) {
+    const alreadyAdded = favoritedSeriesList.find((fs) => {
+      return serie.id === fs.id
+    })
+    return !!alreadyAdded
+  }
 
   return (
     <table role="table">

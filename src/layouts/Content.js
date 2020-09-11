@@ -10,7 +10,7 @@ function Content() {
   const [filterBy, setFilterBy] = useState('popular')
   const [seriesList, setSeriesList] = useState([])
   const [serieSelected, setSerieSelected] = useState(null)
-  const [favoritedSeries, setFavoritedSeries] = useState([])
+  const [favoritedSeriesList, setFavoritedSeriesList] = useState([])
 
   // useEffect(() => {
   //   if (!serieSelected) return
@@ -52,6 +52,13 @@ function Content() {
     fetchApiDataForSeriesList()
   }, [filterBy])
 
+  useEffect(() => {
+    localStorage.setItem(
+      'favoritedSeriesList',
+      JSON.stringify(favoritedSeriesList)
+    )
+  }, [favoritedSeriesList])
+
   function handleOnClickOrderBy(type) {
     setOrderBy(type)
   }
@@ -65,7 +72,21 @@ function Content() {
   }
 
   function handleOnClickIsFavorited(serie) {
-    setFavoritedSeries([...favoritedSeries, serie])
+    const alreadyAdded = favoritedSeriesList.find((fs) => {
+      return serie.id === fs.id
+    })
+    if (!alreadyAdded) {
+      setFavoritedSeriesList([...favoritedSeriesList, serie])
+    }
+  }
+
+  function handleOnClickIsNotFavorited(serie) {
+    let _favoritedSeriesList = favoritedSeriesList
+    const serieToRemoveIndex = favoritedSeriesList.findIndex((fs) => {
+      return serie.id === fs.id
+    })
+    _favoritedSeriesList.splice(serieToRemoveIndex, 1)
+    setFavoritedSeriesList([..._favoritedSeriesList])
   }
 
   function fetchApiDataForSeriesList() {
@@ -100,8 +121,10 @@ function Content() {
         />
         <Table
           series={seriesList}
+          favoritedSeriesList={favoritedSeriesList}
           handleOnClickSerie={handleOnClickSerie}
           handleOnClickIsFavorited={handleOnClickIsFavorited}
+          handleOnClickIsNotFavorited={handleOnClickIsNotFavorited}
         />
       </div>
       {/* ) : ( // <SerieDetail />
