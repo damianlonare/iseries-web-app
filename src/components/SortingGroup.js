@@ -3,7 +3,7 @@ import './SortingGroup.css'
 
 function SortingGroup({ handleOnClickOrderBy, orderBy }) {
   return (
-    <div>
+    <div className="SortingGroup">
       <label for="orderByField">Ordenar por:</label>
       <select id="orderByField" value={orderBy} onChange={handleOnClickOrderBy}>
         <option value="A-Z">A-Z</option>

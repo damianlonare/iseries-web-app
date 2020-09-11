@@ -95,8 +95,8 @@ function Content() {
     setOrderBy(event.target.value)
   }
 
-  function handleOnClickFilterBy(type) {
-    setFilterBy(type)
+  function handleOnClickFilterBy(event) {
+    setFilterBy(event.target.value)
   }
 
   function handleOnClickSerie(serie) {
