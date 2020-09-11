@@ -7,6 +7,7 @@ import SerieDetail from '../pages/SerieDetail'
 
 function Content() {
   const [serieSelected, setSerieSelected] = useState(null)
+  const [seriesList, setSeriesList] = useState([])
 
   useEffect(() => {
     if (!serieSelected) return
@@ -22,16 +23,20 @@ function Content() {
   })
 
   useEffect(() => {
-    fetch(`${process.env.API}/tv/popular`)
+    fetch(process.env.REACT_APP_API + 'tv/popular', {
+      headers: new Headers({
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: 'Bearer ' + process.env.REACT_APP_BEARER_TOKEN,
+      }),
+    })
       .then((res) => res.json())
       .then(
-        (result) => {
-          console.log('success response')
-          console.log(result)
+        (response) => {
+          setSeriesList(response.results)
         },
-        (error) => {
+        (response) => {
           console.log('error response')
-          console.log(error)
+          console.log(response)
         }
       )
   }, [])
@@ -42,7 +47,10 @@ function Content() {
         <div>
           <SortingGroup />
           <FilteringGroup />
-          <Table serieSelected={(serie) => setSerieSelected(serie)} />
+          <Table
+            series={seriesList}
+            serieSelected={(serie) => setSerieSelected(serie)}
+          />
         </div>
       ) : (
         <SerieDetail />
