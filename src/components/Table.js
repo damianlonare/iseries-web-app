@@ -111,7 +111,7 @@ function MyTable({
                   //   Es favorito
                   // </button>
                   <Button variant="contained" color="primary">
-                    Primary
+                    Es favorito
                   </Button>
                 ) : (
                   // <button
@@ -122,7 +122,7 @@ function MyTable({
                   //     No es favorito
                   //   </button>
                   <Button variant="contained" color="primary">
-                    Primary
+                    No es favorito
                   </Button>
                 )}
               </TableCell>

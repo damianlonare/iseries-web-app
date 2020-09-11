@@ -203,9 +203,16 @@ function Content() {
             </Grid>
           </Grid>
           <div>
-            <button onClick={() => setPage(page - 1)}>Regresar</button>
+            {/* <button onClick={() => setPage(page - 1)}>Regresar</button>
             <span>{page}</span>
-            <button onClick={() => setPage(page + 1)}>Siguiente</button>
+            <button onClick={() => setPage(page + 1)}>Siguiente</button> */}
+            <Button variant="contained" color="primary">
+              No es favorito
+            </Button>
+            <span>{page}</span>
+            <Button variant="contained" color="primary">
+              No es favorito
+            </Button>
           </div>
         </Grid>
       ) : (
