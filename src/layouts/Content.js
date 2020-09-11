@@ -5,6 +5,27 @@ import FilteringGroup from '../components/FilteringGroup'
 import Table from '../components/Table'
 import SerieDetails from '../pages/SerieDetails'
 
+import { makeStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
+import FormLabel from '@material-ui/core/FormLabel'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import RadioGroup from '@material-ui/core/RadioGroup'
+import Radio from '@material-ui/core/Radio'
+import Paper from '@material-ui/core/Paper'
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    height: 140,
+    width: 250,
+  },
+  control: {
+    padding: theme.spacing(2),
+  },
+}))
+
 function Content() {
   const [orderBy, setOrderBy] = useState('')
   const [filterBy, setFilterBy] = useState('popular')
@@ -12,6 +33,9 @@ function Content() {
   const [goToDetails, setGoToDetails] = useState(false)
   const [favoritedSeriesList, setFavoritedSeriesList] = useState([])
   const [page, setPage] = useState(1)
+
+  const [spacing, setSpacing] = React.useState(2)
+  const classes = useStyles()
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
@@ -149,32 +173,41 @@ function Content() {
   return (
     <section role="main">
       {!goToDetails ? (
-        <div>
-          <div>
-            <div>
-              <SortingGroup
-                handleOnClickOrderBy={handleOnClickOrderBy}
-                orderBy={orderBy}
+        <Grid container className={classes.root} spacing={2}>
+          <Grid item xs={12}>
+            <Grid container justify="center" spacing={spacing}>
+              <Grid item>
+                {/* <Paper className={classes.paper}> */}
+                <Paper className="Content__filters-parent">
+                  <SortingGroup
+                    handleOnClickOrderBy={handleOnClickOrderBy}
+                    orderBy={orderBy}
+                  />
+                  <FilteringGroup
+                    handleOnClickFilterBy={handleOnClickFilterBy}
+                    filterBy={filterBy}
+                  />
+                </Paper>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs={12}>
+            <Grid container justify="center" spacing={spacing}>
+              <Table
+                series={seriesList}
+                favoritedSeriesList={favoritedSeriesList}
+                handleOnClickSerie={handleOnClickSerie}
+                handleOnClickIsFavorited={handleOnClickIsFavorited}
+                handleOnClickIsNotFavorited={handleOnClickIsNotFavorited}
               />
-              <FilteringGroup
-                handleOnClickFilterBy={handleOnClickFilterBy}
-                filterBy={filterBy}
-              />
-            </div>
-            <Table
-              series={seriesList}
-              favoritedSeriesList={favoritedSeriesList}
-              handleOnClickSerie={handleOnClickSerie}
-              handleOnClickIsFavorited={handleOnClickIsFavorited}
-              handleOnClickIsNotFavorited={handleOnClickIsNotFavorited}
-            />
-          </div>
+            </Grid>
+          </Grid>
           <div>
             <button onClick={() => setPage(page - 1)}>Regresar</button>
             <span>{page}</span>
             <button onClick={() => setPage(page + 1)}>Siguiente</button>
           </div>
-        </div>
+        </Grid>
       ) : (
         <SerieDetails
           resetGotToDetails={() => setGoToDetails(false)}
