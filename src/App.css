@@ -1,0 +1,22 @@
+.flex {
+  display: flex;
+}
+.justify-content-center {
+  justify-content: center;
+}
+.mb-2 {
+  margin-bottom: 20px;
+}
+.mt-2 {
+  margin-top: 20px;
+}
+.SerieDetails__description {
+  font-size: 24px;
+  font-weight: bolder;
+}
+.max-width {
+  width: 100%;
+}
+.self-center {
+  align-self: center;
+}

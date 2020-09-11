@@ -5,6 +5,9 @@
 /* Larger than tablet screen */
 @media (min-width: 80rem) {
   .SortingGroup {
-    margin-top: 40px;
+    margin-top: 30px;
   }
+  /* #orderByField {
+    max-width: 20%;
+  } */
 }

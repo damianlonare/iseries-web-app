@@ -139,6 +139,7 @@ function Content() {
       .then(
         (response) => {
           setSeriesList(response.results)
+          window.scrollTo({ top: 0 })
         },
         (response) => {
           // TODO: Handle response error...
@@ -150,14 +151,16 @@ function Content() {
       {!goToDetails ? (
         <div className="max-width">
           <div className="container">
-            <SortingGroup
-              handleOnClickOrderBy={handleOnClickOrderBy}
-              orderBy={orderBy}
-            />
-            <FilteringGroup
-              handleOnClickFilterBy={handleOnClickFilterBy}
-              filterBy={filterBy}
-            />
+            <div className="row">
+              <SortingGroup
+                handleOnClickOrderBy={handleOnClickOrderBy}
+                orderBy={orderBy}
+              />
+              <FilteringGroup
+                handleOnClickFilterBy={handleOnClickFilterBy}
+                filterBy={filterBy}
+              />
+            </div>
             <Table
               series={seriesList}
               favoritedSeriesList={favoritedSeriesList}

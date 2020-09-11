@@ -1,3 +1,21 @@
 .SerieDetails__poster-img {
   max-width: 300px;
+  box-shadow: 9px 12px 7px #c3c3c3;
+  border-radius: 30px;
+}
+
+.row .column.SerieDetails__poster-container {
+  display: flex;
+  justify-content: center;
+}
+
+.SerieDetails__title {
+  margin-top: 15px;
+}
+
+/* Larger than tablet screen */
+@media (min-width: 80rem) {
+  .SerieDetails__poster-img {
+    max-width: 300px;
+  }
 }
