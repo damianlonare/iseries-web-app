@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import './SortingGroup.css'
 
-function SortingGroup() {
-  const [btnSelected, setBtnSelected] = useState('')
-
+function SortingGroup({ handleOnClickOrderBy, orderBy }) {
   return (
     <div>
       <p>Ordenar:</p>
@@ -11,8 +9,8 @@ function SortingGroup() {
       {/* TODO: QUITAR, SE AGREGÓ SOLO PARA AYUDAR A ENTENDER MEJOR 
         ANTES DE LA IMPLEMENTACIÓN DE DISEÑO FINAL */}
       &nbsp;
-      <button onClick={() => setBtnSelected('A-Z')}>A-Z</button>
-      <button onClick={() => setBtnSelected('Z-A')}>Z-A</button>
+      <button onClick={() => handleOnClickOrderBy('A-Z')}>A-Z</button>
+      <button onClick={() => handleOnClickOrderBy('Z-A')}>Z-A</button>
       {/* TODO: QUITAR, SE AGREGÓ SOLO PARA AYUDAR A ENTENDER MEJOR 
         ANTES DE LA IMPLEMENTACIÓN DE DISEÑO FINAL */}
       &nbsp;
@@ -20,13 +18,13 @@ function SortingGroup() {
       {/* TODO: QUITAR, SE AGREGÓ SOLO PARA AYUDAR A ENTENDER MEJOR 
         ANTES DE LA IMPLEMENTACIÓN DE DISEÑO FINAL */}
       &nbsp;
-      <button onClick={() => setBtnSelected('5 a 0')}>5 a 0</button>
-      <button onClick={() => setBtnSelected('0 a 5')}>0 a 5</button>
+      <button onClick={() => handleOnClickOrderBy('5 a 0')}>5 a 0</button>
+      <button onClick={() => handleOnClickOrderBy('0 a 5')}>0 a 5</button>
       {/* TODO: QUITAR, SE AGREGÓ SOLO PARA AYUDAR A ENTENDER MEJOR 
         ANTES DE LA IMPLEMENTACIÓN DE DISEÑO FINAL */}
       <br />
       <br />
-      <p>Seleccionado: {btnSelected}</p>
+      <p>Seleccionado: {orderBy}</p>
     </div>
   )
 }

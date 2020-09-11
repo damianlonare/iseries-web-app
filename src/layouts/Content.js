@@ -6,21 +6,24 @@ import Table from '../components/Table'
 import SerieDetail from '../pages/SerieDetail'
 
 function Content() {
-  const [serieSelected, setSerieSelected] = useState(null)
+  const [orderBy, setOrderBy] = useState('')
+  const [filterBy, setFilterBy] = useState('')
   const [seriesList, setSeriesList] = useState([])
+  const [serieSelected, setSerieSelected] = useState(null)
+  const [favoritedSeries, setFavoritedSeries] = useState([])
 
-  useEffect(() => {
-    if (!serieSelected) return
+  // useEffect(() => {
+  //   if (!serieSelected) return
 
-    const params = new URLSearchParams(window.location.search)
-    params.set('id', serieSelected)
+  //   const params = new URLSearchParams(window.location.search)
+  //   params.set('id', serieSelected)
 
-    window.history.replaceState(
-      {},
-      '',
-      `${window.location.pathname}serie/?${params}`
-    )
-  })
+  //   window.history.replaceState(
+  //     {},
+  //     '',
+  //     `${window.location.pathname}serie/?${params}`
+  //   )
+  // })
 
   useEffect(() => {
     fetch(process.env.REACT_APP_API + 'tv/popular', {
@@ -35,26 +38,47 @@ function Content() {
           setSeriesList(response.results)
         },
         (response) => {
-          console.log('error response')
-          console.log(response)
+          // TODO: Handle response error...
         }
       )
   }, [])
 
+  function handleOnClickOrderBy(type) {
+    setOrderBy(type)
+  }
+
+  function handleOnClickFilterBy(type) {
+    setFilterBy(type)
+  }
+
+  function handleOnClickSerie(serie) {
+    setSerieSelected(serie)
+  }
+
+  function handleOnClickIsFavorited(serie) {
+    setFavoritedSeries([...favoritedSeries, serie])
+  }
+
   return (
     <section role="main" className="app-content">
-      {!serieSelected ? (
-        <div>
-          <SortingGroup />
-          <FilteringGroup />
-          <Table
-            series={seriesList}
-            serieSelected={(serie) => setSerieSelected(serie)}
-          />
-        </div>
-      ) : (
-        <SerieDetail />
-      )}
+      {/* {!serieSelected ? ( */}
+      <div>
+        <SortingGroup
+          handleOnClickOrderBy={handleOnClickOrderBy}
+          orderBy={orderBy}
+        />
+        <FilteringGroup
+          handleOnClickFilterBy={handleOnClickFilterBy}
+          filterBy={filterBy}
+        />
+        <Table
+          series={seriesList}
+          handleOnClickSerie={handleOnClickSerie}
+          handleOnClickIsFavorited={handleOnClickIsFavorited}
+        />
+      </div>
+      {/* ) : ( // <SerieDetail />
+      )} */}
     </section>
   )
 }
