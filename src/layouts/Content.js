@@ -148,7 +148,7 @@ function Content() {
   return (
     <section role="main" className="app-content row">
       {!goToDetails ? (
-        <div>
+        <div className="max-width">
           <div className="container">
             <SortingGroup
               handleOnClickOrderBy={handleOnClickOrderBy}
