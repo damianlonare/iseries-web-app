@@ -3,7 +3,7 @@ import './Footer.css'
 
 function Footer() {
   return (
-    <footer role="contentinfo" className="app-footer row">
+    <footer role="contentinfo">
       <p>
         Build with &nbsp;
         <span role="img" aria-label="love">

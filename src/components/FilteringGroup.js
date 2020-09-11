@@ -3,7 +3,7 @@ import './FilteringGroup.css'
 
 function FilteringGroup({ filterBy, handleOnClickFilterBy }) {
   return (
-    <div className="FilteringGroup btn-menu-group column">
+    <div>
       <label for="filterByField">Filtrar por:</label>
       <select
         id="filterByField"

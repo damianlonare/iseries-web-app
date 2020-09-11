@@ -68,28 +68,26 @@ function SerieDetails({
   }
 
   return (
-    <div className="max-width">
+    <div>
       {serieDetails ? (
-        <div className="max-width">
-          <div className="container">
-            <div className="row">
-              <div className="column SerieDetails__poster-container">
+        <div>
+          <div>
+            <div>
+              <div>
                 <img
                   alt="poster"
-                  className="SerieDetails__poster-img"
                   src={
                     `https://image.tmdb.org/t/p/w500` + serieDetails.poster_path
                   }
                 />
               </div>
-              <div className="column">
-                <h2 className="SerieDetails__title">{serieDetails.name}</h2>
+              <div>
+                <h2>{serieDetails.name}</h2>
               </div>
               {isFavorited(serieDetails) ? (
-                <div className="column flex">
-                  <div className="flex justify-content-center">
+                <div>
+                  <div>
                     <button
-                      className="mb-2"
                       data-testid={serieDetails.id}
                       onClick={() => handleOnClickIsNotFavorited(serieDetails)}
                     >
@@ -98,8 +96,8 @@ function SerieDetails({
                   </div>
                 </div>
               ) : (
-                <div className="column flex self-center">
-                  <div className="flex justify-content-center">
+                <div>
+                  <div>
                     <button
                       data-testid={serieDetails.id}
                       onClick={() => handleOnClickIsFavorited(serieDetails)}
@@ -110,25 +108,19 @@ function SerieDetails({
                 </div>
               )}
             </div>
-            <div className="row mt-2">
-              <p className="column SerieDetails__description">
-                {serieDetails.overview}
-              </p>
+            <div>
+              <p>{serieDetails.overview}</p>
             </div>
-            <div className="row mt-2">
+            <div>
               Generos:{' '}
               {serieDetails.genres.map((g) => (
                 <p key={g.id}>{g.name}, </p>
               ))}
-              <p className="column">Popularidad: {serieDetails.popularity}</p>
-              <p className="column">
-                Promedio de votaciones: {serieDetails.vote_average}
-              </p>
+              <p>Popularidad: {serieDetails.popularity}</p>
+              <p>Promedio de votaciones: {serieDetails.vote_average}</p>
             </div>
-            <div className="row">
-              <button class="button button-clear" onClick={goBackToMainScreen}>
-                Regresar
-              </button>
+            <div>
+              <button onClick={goBackToMainScreen}>Regresar</button>
             </div>
           </div>
         </div>

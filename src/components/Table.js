@@ -11,7 +11,6 @@ function Table({
   const tableItems = series.map((s) => (
     <tr role="row" key={s.id}>
       <td
-        className="text--center"
         role="cell"
         data-testid={`serieTitle${s.id}`}
         onClick={() => handleOnClickSerie(s)}
@@ -20,14 +19,11 @@ function Table({
       </td>
       <td role="cell">
         <img
-          className="Table__poster-img"
           alt="Poster Img"
           src={`https://image.tmdb.org/t/p/w500` + s.poster_path}
         />
       </td>
-      <td className="text--center" role="cell">
-        {s.vote_average}
-      </td>
+      <td role="cell">{s.vote_average}</td>
       <td role="cell">
         {isFavorited(s) ? (
           <button
@@ -58,7 +54,7 @@ function Table({
   }
 
   return (
-    <div className="row Content__Table">
+    <div>
       <table role="table">
         <thead>
           <tr role="row">

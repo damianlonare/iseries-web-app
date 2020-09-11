@@ -147,11 +147,11 @@ function Content() {
       )
   }
   return (
-    <section role="main" className="app-content row">
+    <section role="main">
       {!goToDetails ? (
-        <div className="max-width">
-          <div className="container">
-            <div className="row">
+        <div>
+          <div>
+            <div>
               <SortingGroup
                 handleOnClickOrderBy={handleOnClickOrderBy}
                 orderBy={orderBy}
@@ -169,20 +169,10 @@ function Content() {
               handleOnClickIsNotFavorited={handleOnClickIsNotFavorited}
             />
           </div>
-          <div className="Content__pagination-container">
-            <button
-              className="button button--custom"
-              onClick={() => setPage(page - 1)}
-            >
-              Regresar
-            </button>
-            <span className="Content__page-text">{page}</span>
-            <button
-              className="button button--custom"
-              onClick={() => setPage(page + 1)}
-            >
-              Siguiente
-            </button>
+          <div>
+            <button onClick={() => setPage(page - 1)}>Regresar</button>
+            <span>{page}</span>
+            <button onClick={() => setPage(page + 1)}>Siguiente</button>
           </div>
         </div>
       ) : (
