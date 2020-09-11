@@ -1,0 +1,11 @@
+.app-header {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 3px;
+  margin-bottom: 25px;
+  border-bottom-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+  background-color: #ebcbff;
+  box-shadow: 7px 8px 13px #d4d4d4;
+}

@@ -145,29 +145,42 @@ function Content() {
         }
       )
   }
-
   return (
-    <section role="main" className="app-content">
+    <section role="main" className="app-content row">
       {!goToDetails ? (
         <div>
-          <SortingGroup
-            handleOnClickOrderBy={handleOnClickOrderBy}
-            orderBy={orderBy}
-          />
-          <FilteringGroup
-            handleOnClickFilterBy={handleOnClickFilterBy}
-            filterBy={filterBy}
-          />
-          <Table
-            series={seriesList}
-            favoritedSeriesList={favoritedSeriesList}
-            handleOnClickSerie={handleOnClickSerie}
-            handleOnClickIsFavorited={handleOnClickIsFavorited}
-            handleOnClickIsNotFavorited={handleOnClickIsNotFavorited}
-          />
-          <button onClick={() => setPage(page - 1)}>Regresar</button>
-          <span className="Content__page-text">{page}</span>
-          <button onClick={() => setPage(page + 1)}>Siguiente</button>
+          <div className="container">
+            <SortingGroup
+              handleOnClickOrderBy={handleOnClickOrderBy}
+              orderBy={orderBy}
+            />
+            <FilteringGroup
+              handleOnClickFilterBy={handleOnClickFilterBy}
+              filterBy={filterBy}
+            />
+            <Table
+              series={seriesList}
+              favoritedSeriesList={favoritedSeriesList}
+              handleOnClickSerie={handleOnClickSerie}
+              handleOnClickIsFavorited={handleOnClickIsFavorited}
+              handleOnClickIsNotFavorited={handleOnClickIsNotFavorited}
+            />
+          </div>
+          <div className="Content__pagination-container">
+            <button
+              className="button button--custom"
+              onClick={() => setPage(page - 1)}
+            >
+              Regresar
+            </button>
+            <span className="Content__page-text">{page}</span>
+            <button
+              className="button button--custom"
+              onClick={() => setPage(page + 1)}
+            >
+              Siguiente
+            </button>
+          </div>
         </div>
       ) : (
         <SerieDetails

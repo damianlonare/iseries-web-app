@@ -1,9 +1,9 @@
-import React from "react";
-import "./Footer.css";
+import React from 'react'
+import './Footer.css'
 
 function Footer() {
   return (
-    <footer role="contentinfo" className="app-footer">
+    <footer role="contentinfo" className="app-footer row">
       <p>
         Build with &nbsp;
         <span role="img" aria-label="love">
@@ -12,7 +12,7 @@ function Footer() {
         &nbsp;&nbsp; by Damian Arechar
       </p>
     </footer>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

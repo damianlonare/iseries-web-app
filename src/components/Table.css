@@ -1,9 +1,14 @@
 .Table__poster-img {
-  max-width: 100px;
+  /* width: 100%; */
   box-shadow: 5px 9px 5px 1px #b3b3b3;
   border-radius: 20px;
 }
 
 .text--center {
+  text-align: center;
+}
+
+.Content__Table th,
+td {
   text-align: center;
 }

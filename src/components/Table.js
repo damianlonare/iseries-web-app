@@ -58,17 +58,19 @@ function Table({
   }
 
   return (
-    <table role="table">
-      <thead>
-        <tr role="row">
-          <th>Nombre</th>
-          <th>Poster</th>
-          <th>Puntuación</th>
-          <th>Favoritos</th>
-        </tr>
-      </thead>
-      <tbody>{tableItems}</tbody>
-    </table>
+    <div className="row Content__Table">
+      <table role="table">
+        <thead>
+          <tr role="row">
+            <th>Nombre</th>
+            <th>Poster</th>
+            <th>Puntuación</th>
+            <th>Favoritos</th>
+          </tr>
+        </thead>
+        <tbody>{tableItems}</tbody>
+      </table>
+    </div>
   )
 }
 
