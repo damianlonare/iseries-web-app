@@ -51,6 +51,12 @@ function Content() {
       if (orderBy === 'A-Z') {
         if (a.name < b.name) return -1
       }
+      if (orderBy === '0-100') {
+        if (a.vote_average < b.vote_average) return -1
+      }
+      if (orderBy === '100-0') {
+        if (a.vote_average > b.vote_average) return -1
+      }
     })
     // setSeriesList([])
     setSeriesList(sortedSeriesList)

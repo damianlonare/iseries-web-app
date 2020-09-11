@@ -18,8 +18,8 @@ function SortingGroup({ handleOnClickOrderBy, orderBy }) {
       {/* TODO: QUITAR, SE AGREGÓ SOLO PARA AYUDAR A ENTENDER MEJOR 
         ANTES DE LA IMPLEMENTACIÓN DE DISEÑO FINAL */}
       &nbsp;
-      <button onClick={() => handleOnClickOrderBy('5 a 0')}>5 a 0</button>
-      <button onClick={() => handleOnClickOrderBy('0 a 5')}>0 a 5</button>
+      <button onClick={() => handleOnClickOrderBy('100-0')}>100 a 0</button>
+      <button onClick={() => handleOnClickOrderBy('0-100')}>0 a 100</button>
       {/* TODO: QUITAR, SE AGREGÓ SOLO PARA AYUDAR A ENTENDER MEJOR 
         ANTES DE LA IMPLEMENTACIÓN DE DISEÑO FINAL */}
       <br />
