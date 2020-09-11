@@ -13,6 +13,10 @@ function FilteringGroup({ filterBy, handleOnClickFilterBy }) {
       <button onClick={() => handleOnClickFilterBy('on_the_air')}>
         Mas vistas
       </button>
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
   )
 }
