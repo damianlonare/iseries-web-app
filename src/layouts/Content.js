@@ -46,7 +46,6 @@ function Content() {
       }
       return 1
     })
-    // setSeriesList([])
     setSeriesList(sortedSeriesList)
   }, [orderBy])
 
