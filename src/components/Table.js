@@ -1,13 +1,36 @@
 import React from 'react'
 import './Table.css'
 
-function Table({
+import { makeStyles } from '@material-ui/core/styles'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableContainer from '@material-ui/core/TableContainer'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Paper from '@material-ui/core/Paper'
+import Button from '@material-ui/core/Button'
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  table: {
+    minWidth: 650,
+  },
+}))
+
+function MyTable({
   series,
   handleOnClickSerie,
   handleOnClickIsFavorited,
   favoritedSeriesList,
   handleOnClickIsNotFavorited,
 }) {
+  const classes = useStyles()
+
   const tableItems = series.map((s) => (
     <tr role="row" key={s.id}>
       <td
@@ -54,20 +77,61 @@ function Table({
   }
 
   return (
-    <div>
-      <table role="table">
-        <thead>
-          <tr role="row">
-            <th>Nombre</th>
-            <th>Poster</th>
-            <th>Puntuación</th>
-            <th>Favoritos</th>
-          </tr>
-        </thead>
-        <tbody>{tableItems}</tbody>
-      </table>
-    </div>
+    <TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Nombre</TableCell>
+            <TableCell align="right">Poster</TableCell>
+            <TableCell align="right">Puntuación</TableCell>
+            <TableCell align="right">Favoritos</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {series.map((s) => (
+            <TableRow key={s.id}>
+              <TableCell component="th" scope="row">
+                {s.name}
+              </TableCell>
+              <TableCell align="right">
+                <img
+                  alt="Poster Img"
+                  class="Table__img"
+                  src={`https://image.tmdb.org/t/p/w500` + s.poster_path}
+                />
+              </TableCell>
+              <TableCell align="right">{s.vote_average}</TableCell>
+              <TableCell align="right">
+                {isFavorited(s) ? (
+                  // <button
+                  //   className="button button-clear"
+                  //   data-testid={s.id}
+                  //   onClick={() => handleOnClickIsNotFavorited(s)}
+                  // >
+                  //   Es favorito
+                  // </button>
+                  <Button variant="contained" color="primary">
+                    Primary
+                  </Button>
+                ) : (
+                  // <button
+                  //   className="button button-clear"
+                  //   data-testid={s.id}
+                  //   onClick={() => handleOnClickIsFavorited(s)}
+                  // >
+                  //     No es favorito
+                  //   </button>
+                  <Button variant="contained" color="primary">
+                    Primary
+                  </Button>
+                )}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   )
 }
 
-export default Table
+export default MyTable
