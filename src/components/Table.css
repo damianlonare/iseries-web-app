@@ -1,5 +1,7 @@
 .Table__poster-img {
   max-width: 100px;
+  box-shadow: 5px 9px 5px 1px #b3b3b3;
+  border-radius: 20px;
 }
 
 .text--center {
