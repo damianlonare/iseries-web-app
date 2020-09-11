@@ -3,32 +3,28 @@ import './Content.css'
 import SortingGroup from '../components/SortingGroup'
 import FilteringGroup from '../components/FilteringGroup'
 import Table from '../components/Table'
-import SerieDetail from '../pages/SerieDetail'
+import SerieDetails from '../pages/SerieDetails'
 
 function Content() {
   const [orderBy, setOrderBy] = useState('')
   const [filterBy, setFilterBy] = useState('popular')
   const [seriesList, setSeriesList] = useState([])
-  const [serieSelected, setSerieSelected] = useState(null)
+  const [goToDetails, setGoToDetails] = useState(false)
   const [favoritedSeriesList, setFavoritedSeriesList] = useState([])
   const [page, setPage] = useState(1)
 
-  // useEffect(() => {
-  //   if (!serieSelected) return
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const id = params.get('id')
 
-  //   const params = new URLSearchParams(window.location.search)
-  //   params.set('id', serieSelected)
-
-  //   window.history.replaceState(
-  //     {},
-  //     '',
-  //     `${window.location.pathname}serie/?${params}`
-  //   )
-  // })
+    if (id) {
+      setGoToDetails(true)
+    }
+  })
 
   useEffect(() => {
     fetchApiDataForSeriesList()
-  }, [seriesList])
+  }, [seriesList === null])
 
   useEffect(() => {
     const sortedSeriesList = [...seriesList].sort((a, b) => {
@@ -50,7 +46,11 @@ function Content() {
   }, [orderBy])
 
   useEffect(() => {
-    setPage(1)
+    if (page !== 1) {
+      setPage(1)
+    } else {
+      fetchApiDataForSeriesList()
+    }
   }, [filterBy])
 
   useEffect(() => {
@@ -58,11 +58,34 @@ function Content() {
   }, [page])
 
   useEffect(() => {
-    localStorage.setItem(
-      'favoritedSeriesList',
-      JSON.stringify(favoritedSeriesList)
-    )
+    if (favoritedSeriesList.length > 0) {
+      localStorage.setItem(
+        'favoritedSeriesList',
+        JSON.stringify(favoritedSeriesList)
+      )
+    }
   }, [favoritedSeriesList])
+
+  useEffect(() => {
+    window.onpopstate = (e) => {
+      const params = new URLSearchParams(window.location.search)
+      const id = params.get('id')
+
+      if (id) {
+        setGoToDetails(true)
+      }
+    }
+  })
+
+  useEffect(() => {
+    if (!!localStorage.getItem('favoritedSeriesList')) {
+      if (favoritedSeriesList.length === 0) {
+        setFavoritedSeriesList([
+          ...JSON.parse(localStorage.getItem('favoritedSeriesList')),
+        ])
+      }
+    }
+  })
 
   function handleOnClickOrderBy(type) {
     setOrderBy(type)
@@ -73,7 +96,14 @@ function Content() {
   }
 
   function handleOnClickSerie(serie) {
-    setSerieSelected(serie)
+    const params = new URLSearchParams(window.location.search)
+    params.set('id', serie.id)
+    window.history.pushState(
+      {},
+      '',
+      `${window.location.origin}/serie/?${params}`
+    )
+    setGoToDetails(true)
   }
 
   function handleOnClickIsFavorited(serie) {
@@ -114,29 +144,35 @@ function Content() {
 
   return (
     <section role="main" className="app-content">
-      {/* {!serieSelected ? ( */}
-      <div>
-        <SortingGroup
-          handleOnClickOrderBy={handleOnClickOrderBy}
-          orderBy={orderBy}
-        />
-        <FilteringGroup
-          handleOnClickFilterBy={handleOnClickFilterBy}
-          filterBy={filterBy}
-        />
-        <Table
-          series={seriesList}
+      {!goToDetails ? (
+        <div>
+          <SortingGroup
+            handleOnClickOrderBy={handleOnClickOrderBy}
+            orderBy={orderBy}
+          />
+          <FilteringGroup
+            handleOnClickFilterBy={handleOnClickFilterBy}
+            filterBy={filterBy}
+          />
+          <Table
+            series={seriesList}
+            favoritedSeriesList={favoritedSeriesList}
+            handleOnClickSerie={handleOnClickSerie}
+            handleOnClickIsFavorited={handleOnClickIsFavorited}
+            handleOnClickIsNotFavorited={handleOnClickIsNotFavorited}
+          />
+          <button onClick={() => setPage(page - 1)}>Regresar</button>
+          <span className="Content__page-text">{page}</span>
+          <button onClick={() => setPage(page + 1)}>Siguiente</button>
+        </div>
+      ) : (
+        <SerieDetails
+          resetGotToDetails={() => setGoToDetails(false)}
           favoritedSeriesList={favoritedSeriesList}
-          handleOnClickSerie={handleOnClickSerie}
           handleOnClickIsFavorited={handleOnClickIsFavorited}
           handleOnClickIsNotFavorited={handleOnClickIsNotFavorited}
         />
-        <button onClick={() => setPage(page - 1)}>Regresar</button>
-        <span className="Content__page-text">{page}</span>
-        <button onClick={() => setPage(page + 1)}>Siguiente</button>
-      </div>
-      {/* ) : ( // <SerieDetail />
-      )} */}
+      )}
     </section>
   )
 }
