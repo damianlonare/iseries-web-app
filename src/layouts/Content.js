@@ -41,7 +41,20 @@ function Content() {
           // TODO: Handle response error...
         }
       )
-  }, [])
+  }, [seriesList.length === 0])
+
+  useEffect(() => {
+    const sortedSeriesList = [...seriesList].sort((a, b) => {
+      if (orderBy === 'Z-A') {
+        if (a.name > b.name) return -1
+      }
+      if (orderBy === 'A-Z') {
+        if (a.name < b.name) return -1
+      }
+    })
+    // setSeriesList([])
+    setSeriesList(sortedSeriesList)
+  }, [orderBy])
 
   function handleOnClickOrderBy(type) {
     setOrderBy(type)
