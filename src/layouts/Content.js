@@ -78,14 +78,17 @@ function Content() {
   })
 
   useEffect(() => {
-    if (!!localStorage.getItem('favoritedSeriesList')) {
+    if (
+      !!localStorage.getItem('favoritedSeriesList') &&
+      favoritedSeriesList.length === 0
+    ) {
       if (favoritedSeriesList.length === 0) {
         setFavoritedSeriesList([
           ...JSON.parse(localStorage.getItem('favoritedSeriesList')),
         ])
       }
     }
-  })
+  }, [favoritedSeriesList.length === 0])
 
   function handleOnClickOrderBy(type) {
     setOrderBy(type)
