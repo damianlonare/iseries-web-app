@@ -3,14 +3,14 @@ import './SortingGroup.css'
 
 function SortingGroup({ handleOnClickOrderBy, orderBy }) {
   return (
-    <div>
-      <p>Ordenar:</p>
-      <button onClick={() => handleOnClickOrderBy('A-Z')}>A-Z</button>
-      <button onClick={() => handleOnClickOrderBy('Z-A')}>Z-A</button>
-      <button onClick={() => handleOnClickOrderBy('100-0')}>100 a 0</button>
-      <button onClick={() => handleOnClickOrderBy('0-100')}>0 a 100</button>
-      <br />
-      <br />
+    <div className="SortingGroup column">
+      <label for="orderByField">Ordenar por:</label>
+      <select id="orderByField" value={orderBy} onChange={handleOnClickOrderBy}>
+        <option value="A-Z">A-Z</option>
+        <option value="Z-A">Z-A</option>
+        <option value="100 a 0">100 a 0</option>
+        <option value="0 a 100">0 a 100</option>
+      </select>
     </div>
   )
 }

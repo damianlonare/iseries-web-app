@@ -1,0 +1,12 @@
+.app-footer {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 30px;
+  padding-bottom: 19px;
+  padding-top: 23px;
+  border-top-left-radius: 100px;
+  border-top-right-radius: 100px;
+  background-color: #ebcbff;
+  box-shadow: -8px -6px 13px #d4d4d4;
+}

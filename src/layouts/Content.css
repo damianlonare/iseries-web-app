@@ -1,4 +1,23 @@
+.Content__pagination-container {
+  display: flex;
+  justify-content: center;
+}
+
 .Content__page-text {
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 25px;
+  background-color: #f1e3f9;
+  padding: 0 10px 0 10px;
+  border-radius: 68px;
+  align-items: center;
+  text-align: center;
+  padding-top: 2px;
+  box-shadow: 4px 5px 4px 1px #d2d2d2;
+}
+
+.button--custom {
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  box-shadow: 7px 7px 7px 0px #bdbdbd;
 }

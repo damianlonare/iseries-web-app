@@ -31,6 +31,7 @@ function Table({
       <td role="cell">
         {isFavorited(s) ? (
           <button
+            class="button button-clear"
             data-testid={s.id}
             onClick={() => handleOnClickIsNotFavorited(s)}
           >
@@ -38,6 +39,7 @@ function Table({
           </button>
         ) : (
           <button
+            class="button button-clear"
             data-testid={s.id}
             onClick={() => handleOnClickIsFavorited(s)}
           >
@@ -56,17 +58,19 @@ function Table({
   }
 
   return (
-    <table role="table">
-      <thead>
-        <tr role="row">
-          <th>Nombre</th>
-          <th>Poster</th>
-          <th>Puntuación</th>
-          <th>Favoritos</th>
-        </tr>
-      </thead>
-      <tbody>{tableItems}</tbody>
-    </table>
+    <div className="row Content__Table">
+      <table role="table">
+        <thead>
+          <tr role="row">
+            <th>Nombre</th>
+            <th>Poster</th>
+            <th>Puntuación</th>
+            <th>Favoritos</th>
+          </tr>
+        </thead>
+        <tbody>{tableItems}</tbody>
+      </table>
+    </div>
   )
 }
 

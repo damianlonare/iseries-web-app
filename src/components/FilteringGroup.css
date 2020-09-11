@@ -1,0 +1,9 @@
+.FilteringGroup {
+  margin-bottom: 40px;
+}
+
+@media (min-width: 80rem) {
+  .FilteringGroup {
+    margin-top: 30px;
+  }
+}

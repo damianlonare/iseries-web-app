@@ -78,21 +78,25 @@ function Content() {
   })
 
   useEffect(() => {
-    if (!!localStorage.getItem('favoritedSeriesList')) {
+    if (
+      !!localStorage.getItem('favoritedSeriesList') &&
+      favoritedSeriesList.length === 0
+    ) {
       if (favoritedSeriesList.length === 0) {
         setFavoritedSeriesList([
           ...JSON.parse(localStorage.getItem('favoritedSeriesList')),
         ])
       }
     }
-  })
+  }, [favoritedSeriesList.length === 0])
 
-  function handleOnClickOrderBy(type) {
-    setOrderBy(type)
+  function handleOnClickOrderBy(event) {
+    console.log(event.target.value)
+    setOrderBy(event.target.value)
   }
 
-  function handleOnClickFilterBy(type) {
-    setFilterBy(type)
+  function handleOnClickFilterBy(event) {
+    setFilterBy(event.target.value)
   }
 
   function handleOnClickSerie(serie) {
@@ -135,35 +139,51 @@ function Content() {
       .then(
         (response) => {
           setSeriesList(response.results)
+          window.scrollTo({ top: 0 })
         },
         (response) => {
           // TODO: Handle response error...
         }
       )
   }
-
   return (
-    <section role="main" className="app-content">
+    <section role="main" className="app-content row">
       {!goToDetails ? (
-        <div>
-          <SortingGroup
-            handleOnClickOrderBy={handleOnClickOrderBy}
-            orderBy={orderBy}
-          />
-          <FilteringGroup
-            handleOnClickFilterBy={handleOnClickFilterBy}
-            filterBy={filterBy}
-          />
-          <Table
-            series={seriesList}
-            favoritedSeriesList={favoritedSeriesList}
-            handleOnClickSerie={handleOnClickSerie}
-            handleOnClickIsFavorited={handleOnClickIsFavorited}
-            handleOnClickIsNotFavorited={handleOnClickIsNotFavorited}
-          />
-          <button onClick={() => setPage(page - 1)}>Regresar</button>
-          <span className="Content__page-text">{page}</span>
-          <button onClick={() => setPage(page + 1)}>Siguiente</button>
+        <div className="max-width">
+          <div className="container">
+            <div className="row">
+              <SortingGroup
+                handleOnClickOrderBy={handleOnClickOrderBy}
+                orderBy={orderBy}
+              />
+              <FilteringGroup
+                handleOnClickFilterBy={handleOnClickFilterBy}
+                filterBy={filterBy}
+              />
+            </div>
+            <Table
+              series={seriesList}
+              favoritedSeriesList={favoritedSeriesList}
+              handleOnClickSerie={handleOnClickSerie}
+              handleOnClickIsFavorited={handleOnClickIsFavorited}
+              handleOnClickIsNotFavorited={handleOnClickIsNotFavorited}
+            />
+          </div>
+          <div className="Content__pagination-container">
+            <button
+              className="button button--custom"
+              onClick={() => setPage(page - 1)}
+            >
+              Regresar
+            </button>
+            <span className="Content__page-text">{page}</span>
+            <button
+              className="button button--custom"
+              onClick={() => setPage(page + 1)}
+            >
+              Siguiente
+            </button>
+          </div>
         </div>
       ) : (
         <SerieDetails
