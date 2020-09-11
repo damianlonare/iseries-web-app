@@ -58,11 +58,34 @@ function Content() {
   }, [page])
 
   useEffect(() => {
-    localStorage.setItem(
-      'favoritedSeriesList',
-      JSON.stringify(favoritedSeriesList)
-    )
+    if (favoritedSeriesList.length > 0) {
+      localStorage.setItem(
+        'favoritedSeriesList',
+        JSON.stringify(favoritedSeriesList)
+      )
+    }
   }, [favoritedSeriesList])
+
+  useEffect(() => {
+    window.onpopstate = (e) => {
+      const params = new URLSearchParams(window.location.search)
+      const id = params.get('id')
+
+      if (id) {
+        setGoToDetails(true)
+      }
+    }
+  })
+
+  useEffect(() => {
+    if (!!localStorage.getItem('favoritedSeriesList')) {
+      if (favoritedSeriesList.length === 0) {
+        setFavoritedSeriesList([
+          ...JSON.parse(localStorage.getItem('favoritedSeriesList')),
+        ])
+      }
+    }
+  })
 
   function handleOnClickOrderBy(type) {
     setOrderBy(type)
@@ -143,7 +166,12 @@ function Content() {
           <button onClick={() => setPage(page + 1)}>Siguiente</button>
         </div>
       ) : (
-        <SerieDetails />
+        <SerieDetails
+          resetGotToDetails={() => setGoToDetails(false)}
+          favoritedSeriesList={favoritedSeriesList}
+          handleOnClickIsFavorited={handleOnClickIsFavorited}
+          handleOnClickIsNotFavorited={handleOnClickIsNotFavorited}
+        />
       )}
     </section>
   )
